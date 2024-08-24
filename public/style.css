@@ -1,0 +1,215 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f3f4f6;
+    color: #111827;
+    overflow: hidden; /* Hide overflow to keep the layout clean */
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Ensure the map is behind the weather app */
+}
+
+.weather-app {
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent background */
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    margin: 40px auto; /* Center the weather app */
+    position: relative;
+    text-align: center;
+    z-index: 1; /* Ensure the weather app is above the map */
+    backdrop-filter: blur(10px); /* Glass effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect to lift the app slightly */
+.weather-app:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Ensure input and button stack on smaller screens */
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    width: 70%;
+    max-width: 250px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    margin-bottom: 10px; /* Add margin for better spacing on mobile */
+}
+
+input[type="text"]:focus {
+    border-color: #3b82f6; /* Blue border on focus */
+}
+
+button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #3b82f6; /* Blue background */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+    transform: translateY(-2px); /* Lift effect */
+}
+
+button:active {
+    transform: translateY(0); /* Reset on click */
+}
+
+/* Weather Display */
+.weather-display {
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth appearance */
+}
+
+.weather-display.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.temperature {
+    font-size: 48px;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 20px;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+.icon {
+    width: 100px;
+    margin-top: 10px;
+}
+
+.error-message {
+    margin-top: 20px;
+    color: #ef4444; /* Red color for errors */
+    font-size: 16px;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Favorite Cities Widget */
+.favorites-widget {
+    margin-top: 30px;
+}
+
+.favorites-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap; /* Wrap favorite city buttons on smaller screens */
+}
+
+.favorites-list button {
+    padding: 10px;
+    background-color: #3b82f6;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100px; /* Consistent size for favorite city buttons */
+    margin: 5px 0; /* Margin for spacing between buttons */
+}
+
+.favorites-list button:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+    transform: translateY(-2px); /* Lift effect */
+}
+
+.favorites-list button:active {
+    transform: translateY(0); /* Reset on click */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .input-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    button {
+        width: 100%;
+        margin-left: 0; /* Remove left margin on mobile */
+        margin-bottom: 10px; /* Add bottom margin on mobile */
+    }
+
+    .temperature {
+        font-size: 32px;
+    }
+
+    .favorites-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .favorites-list button {
+        width: 80%; /* Make buttons wider on mobile for easier tapping */
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
